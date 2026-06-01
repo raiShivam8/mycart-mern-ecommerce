@@ -1,0 +1,138 @@
+.admin-page {
+  padding: 30px;
+}
+
+.admin-head {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.admin-head h1 {
+  font-size: 34px;
+}
+
+.product-form {
+  background: white;
+  padding: 22px;
+  border-radius: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 28px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.07);
+}
+
+.product-form input,
+.product-form select {
+  height: 48px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  padding: 0 14px;
+  outline: none;
+}
+
+.product-form input:focus,
+.product-form select:focus {
+  border-color: #2563eb;
+}
+
+.product-form button {
+  height: 48px;
+  border: none;
+  border-radius: 10px;
+  background: #2563eb;
+  color: white;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.admin-table {
+  width: 100%;
+  background: white;
+  border-collapse: collapse;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.07);
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 16px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+.admin-table th {
+  background: #f9fafb;
+  font-weight: 800;
+}
+
+.admin-product-img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  background: #f3f4f6;
+  border-radius: 8px;
+}
+
+.delete-btn {
+  border: none;
+  background: #fee2e2;
+  color: #b91c1c;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .product-form {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-table {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+
+.admin-head p {
+  margin-top: 6px;
+  color: #64748b;
+  font-size: 15px;
+}
+
+.products-table-wrapper {
+  max-height: 520px;
+  overflow-y: auto;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.07);
+}
+
+.products-table-wrapper .admin-table {
+  box-shadow: none;
+}
+
+.products-table-wrapper::-webkit-scrollbar {
+  width: 8px;
+}
+
+.products-table-wrapper::-webkit-scrollbar-track {
+  background: #eef2f7;
+  border-radius: 10px;
+}
+
+.products-table-wrapper::-webkit-scrollbar-thumb {
+  background: #2563eb;
+  border-radius: 10px;
+}
+
+.empty-table {
+  text-align: center;
+  padding: 30px;
+  color: #64748b;
+  font-weight: 700;
+}

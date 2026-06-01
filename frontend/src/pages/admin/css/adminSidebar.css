@@ -1,0 +1,44 @@
+.admin-sidebar {
+  width: 270px;
+  min-height: 100vh;
+  background: #111827;
+  color: white;
+  padding: 26px;
+  position: sticky;
+  top: 0;
+}
+
+.admin-logo {
+  margin-bottom: 35px;
+}
+
+.admin-logo h2 {
+  font-size: 28px;
+  margin-bottom: 4px;
+}
+
+.admin-logo span {
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.admin-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.admin-nav a {
+  color: #d1d5db;
+  text-decoration: none;
+  padding: 13px 16px;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.admin-nav a:hover,
+.admin-nav a.active {
+  background: #2563eb;
+  color: white;
+}

@@ -1,0 +1,7 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#fff;color:#111827;scroll-behavior:smooth}
+a{text-decoration:none;color:inherit}
+button,input,select{font-family:inherit}
+main{min-height:70vh}
+.page-message{padding:110px 5%;text-align:center}
+.error{color:#dc2626;background:#fee2e2;padding:8px;border-radius:8px;margin-bottom:10px}

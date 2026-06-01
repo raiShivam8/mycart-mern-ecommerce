@@ -1,0 +1,235 @@
+.admin-users-page {
+  padding: 30px;
+}
+
+.admin-users-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.admin-users-head h1 {
+  font-size: 32px;
+}
+
+.admin-users-head button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 11px 18px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.admin-users-table-box {
+  background: white;
+  border-radius: 18px;
+  overflow-x: auto;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.07);
+}
+
+.admin-users-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-users-table th,
+.admin-users-table td {
+  padding: 16px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.admin-users-table th {
+  background: #f9fafb;
+  color: #374151;
+  font-weight: 800;
+}
+
+.role-badge,
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.role-badge.admin {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.role-badge.user {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.status-badge.active {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.status-badge.inactive {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.edit-user-btn,
+.delete-user-btn {
+  border: none;
+  padding: 8px 13px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 8px;
+  font-weight: 700;
+}
+
+.edit-user-btn {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.delete-user-btn {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+
+.admin-users-head p {
+  margin-top: 6px;
+  color: #64748b;
+  font-size: 15px;
+}
+
+.admin-users-table-wrapper {
+  max-height: 520px;
+  overflow-y: auto;
+  border-radius: 22px;
+  background: white;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.07);
+}
+
+.admin-users-table-wrapper::-webkit-scrollbar {
+  width: 8px;
+}
+
+.admin-users-table-wrapper::-webkit-scrollbar-track {
+  background: #eef2f7;
+}
+
+.admin-users-table-wrapper::-webkit-scrollbar-thumb {
+  background: #2563eb;
+  border-radius: 10px;
+}
+
+.admin-users-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-users-table thead {
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 10;
+}
+
+.admin-users-table th {
+  text-align: left;
+  padding: 22px;
+  font-size: 15px;
+  font-weight: 800;
+  color: #0f172a;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.admin-users-table td {
+  padding: 22px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
+  font-weight: 500;
+}
+
+.admin-users-table tbody tr {
+  transition: 0.3s;
+}
+
+.admin-users-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.user-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg,#2563eb,#1d4ed8);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 17px;
+}
+
+.user-name {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.role-admin,
+.role-user {
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: capitalize;
+}
+
+.role-admin {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.role-user {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.empty-users {
+  text-align: center;
+  padding: 30px;
+  color: #64748b;
+  font-weight: 800;
+}
+
+
+.admin-users-table-wrapper {
+  max-height: 520px;
+  overflow-y: auto;
+  overflow-x: auto;
+  border-radius: 22px;
+  background: white;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.07);
+}
+
+.admin-users-table {
+  min-width: 800px;
+}
+
+.admin-users-table-wrapper::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.admin-users-table-wrapper::-webkit-scrollbar-thumb {
+  background: #2563eb;
+  border-radius: 10px;
+}
