@@ -7,7 +7,7 @@ const createProductList = (items) => {
       (item) =>
         `<li>
           <b>${item.title}</b><br/>
-          Qty: ${item.qty} <br/>
+          Qty: ${item.qty}<br/>
           Price: $${item.price}
         </li>`
     )
@@ -16,8 +16,8 @@ const createProductList = (items) => {
 
 const createAddress = (shippingAddress) => {
   return `
-    ${shippingAddress?.address || ""}, 
-    ${shippingAddress?.city || ""}, 
+    ${shippingAddress?.address || ""},
+    ${shippingAddress?.city || ""},
     ${shippingAddress?.pincode || ""}
   `;
 };
@@ -60,8 +60,12 @@ exports.createOrder = async (req, res) => {
     const productList = createProductList(items);
     const fullAddress = createAddress(shippingAddress);
 
+    res.status(201).json({
+      message: "Order placed successfully",
+      order,
+    });
+
     try {
-      // USER ORDER MAIL
       if (populatedOrder?.user?.email) {
         await sendMail(
           populatedOrder.user.email,
@@ -94,7 +98,6 @@ exports.createOrder = async (req, res) => {
         );
       }
 
-      // ADMIN ORDER MAIL
       if (process.env.ADMIN_EMAIL) {
         await sendMail(
           process.env.ADMIN_EMAIL,
@@ -126,11 +129,6 @@ exports.createOrder = async (req, res) => {
     } catch (mailErr) {
       console.log("Order email failed:", mailErr.message);
     }
-
-    res.status(201).json({
-      message: "Order placed successfully",
-      order,
-    });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -198,6 +196,11 @@ exports.updateOrderStatus = async (req, res) => {
     order.orderStatus = orderStatus;
     await order.save();
 
+    res.json({
+      message: "Order status updated",
+      order,
+    });
+
     if (orderStatus === "Delivered" && oldStatus !== "Delivered") {
       try {
         const productList = createProductList(order.items);
@@ -234,11 +237,6 @@ exports.updateOrderStatus = async (req, res) => {
         console.log("Delivery email failed:", mailErr.message);
       }
     }
-
-    res.json({
-      message: "Order status updated",
-      order,
-    });
   } catch (err) {
     res.status(500).json({
       message: err.message,
