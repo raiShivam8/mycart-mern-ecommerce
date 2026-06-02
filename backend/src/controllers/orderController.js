@@ -5,6 +5,14 @@ exports.createOrder = async (req, res) => {
   try {
     const { items, shippingAddress, paymentMethod, totalAmount } = req.body;
 
+    if (!items || !Array.isArray(items) || items.length === 0) {
+      return res.status(400).json({ message: "Order items are required" });
+    }
+
+    if (!shippingAddress?.name || !shippingAddress?.phone || !shippingAddress?.address || !shippingAddress?.city || !shippingAddress?.pincode) {
+      return res.status(400).json({ message: "Complete shipping address is required" });
+    }
+
     const order = await Order.create({
       user: req.user._id,
       items,
@@ -17,74 +25,74 @@ exports.createOrder = async (req, res) => {
 
     const populatedOrder = await Order.findById(order._id).populate("user");
 
-    const productList = items
-      .map(
-        (item) =>
-          `<li>${item.title} - Qty: ${item.qty} - $${item.price}</li>`
-      )
-      .join("");
+    // Email should not block order placement. If email config fails on Render,
+    // the order will still be created and frontend will get success response.
+    try {
+      const productList = items
+        .map(
+          (item) =>
+            `<li>${item.title} - Qty: ${item.qty} - $${item.price}</li>`
+        )
+        .join("");
 
-    const fullAddress = `
-      ${shippingAddress.address || ""},
-      ${shippingAddress.city || ""},
-      ${shippingAddress.pincode || ""}
-    `;
+      const fullAddress = `
+        ${shippingAddress.address || ""},
+        ${shippingAddress.city || ""},
+        ${shippingAddress.pincode || ""}
+      `;
 
-    // USER EMAIL
-    await sendMail(
-      populatedOrder.user.email,
-      "Order Placed Successfully - MyCart",
-      `
-        <div style="font-family:Arial,sans-serif;padding:20px">
-          <h2>Order Placed Successfully</h2>
+      if (populatedOrder?.user?.email) {
+        await sendMail(
+          populatedOrder.user.email,
+          "Order Placed Successfully - MyCart",
+          `
+            <div style="font-family:Arial,sans-serif;padding:20px">
+              <h2>Order Placed Successfully</h2>
+              <p>Hello ${populatedOrder.user.name},</p>
+              <p>Your order has been placed successfully.</p>
+              <h3>Customer Details</h3>
+              <p><b>Name:</b> ${shippingAddress.name || populatedOrder.user.name}</p>
+              <p><b>Email:</b> ${populatedOrder.user.email}</p>
+              <p><b>Phone:</b> ${shippingAddress.phone || "Not provided"}</p>
+              <p><b>Address:</b> ${fullAddress}</p>
+              <h3>Order Details</h3>
+              <p><b>Order ID:</b> ${order._id}</p>
+              <p><b>Total Amount:</b> $${totalAmount}</p>
+              <p><b>Payment Method:</b> ${paymentMethod}</p>
+              <p><b>Status:</b> Pending</p>
+              <h3>Products</h3>
+              <ul>${productList}</ul>
+              <p>Thank you for shopping with MyCart.</p>
+            </div>
+          `
+        );
+      }
 
-          <p>Hello ${populatedOrder.user.name},</p>
-          <p>Your order has been placed successfully.</p>
-
-          <h3>Customer Details</h3>
-          <p><b>Name:</b> ${shippingAddress.name || populatedOrder.user.name}</p>
-          <p><b>Email:</b> ${populatedOrder.user.email}</p>
-          <p><b>Phone:</b> ${shippingAddress.phone || "Not provided"}</p>
-          <p><b>Address:</b> ${fullAddress}</p>
-
-          <h3>Order Details</h3>
-          <p><b>Order ID:</b> ${order._id}</p>
-          <p><b>Total Amount:</b> $${totalAmount}</p>
-          <p><b>Payment Method:</b> ${paymentMethod}</p>
-          <p><b>Status:</b> Pending</p>
-
-          <h3>Products</h3>
-          <ul>${productList}</ul>
-
-          <p>Thank you for shopping with MyCart.</p>
-        </div>
-      `
-    );
-
-    // ADMIN EMAIL
-    await sendMail(
-      process.env.ADMIN_EMAIL,
-      "New Order Received - MyCart",
-      `
-        <div style="font-family:Arial,sans-serif;padding:20px">
-          <h2>New Order Received</h2>
-
-          <h3>Customer Details</h3>
-          <p><b>Name:</b> ${shippingAddress.name || populatedOrder.user.name}</p>
-          <p><b>Email:</b> ${populatedOrder.user.email}</p>
-          <p><b>Phone:</b> ${shippingAddress.phone || "Not provided"}</p>
-          <p><b>Address:</b> ${fullAddress}</p>
-
-          <h3>Order Details</h3>
-          <p><b>Order ID:</b> ${order._id}</p>
-          <p><b>Total:</b> $${totalAmount}</p>
-          <p><b>Payment:</b> ${paymentMethod}</p>
-
-          <h3>Products</h3>
-          <ul>${productList}</ul>
-        </div>
-      `
-    );
+      if (process.env.ADMIN_EMAIL) {
+        await sendMail(
+          process.env.ADMIN_EMAIL,
+          "New Order Received - MyCart",
+          `
+            <div style="font-family:Arial,sans-serif;padding:20px">
+              <h2>New Order Received</h2>
+              <h3>Customer Details</h3>
+              <p><b>Name:</b> ${shippingAddress.name || populatedOrder.user.name}</p>
+              <p><b>Email:</b> ${populatedOrder.user.email}</p>
+              <p><b>Phone:</b> ${shippingAddress.phone || "Not provided"}</p>
+              <p><b>Address:</b> ${fullAddress}</p>
+              <h3>Order Details</h3>
+              <p><b>Order ID:</b> ${order._id}</p>
+              <p><b>Total:</b> $${totalAmount}</p>
+              <p><b>Payment:</b> ${paymentMethod}</p>
+              <h3>Products</h3>
+              <ul>${productList}</ul>
+            </div>
+          `
+        );
+      }
+    } catch (mailErr) {
+      console.log("Order email failed:", mailErr.message);
+    }
 
     res.status(201).json({
       message: "Order placed successfully",

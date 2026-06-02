@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import "./css/checkout.css";
 
+const API_URL = import.meta.env.VITE_API_URL || "https://mycart-mern-ecommerce.onrender.com/api";
+
 function Checkout() {
   const { cartItems, subtotal, clearCart } = useCart();
   const navigate = useNavigate();
@@ -26,7 +28,10 @@ function Checkout() {
   };
 
   const placeOrder = async (e) => {
+    console.log('click')
     e.preventDefault();
+
+    if (loading) return;
 
     if (!cartItems || cartItems.length === 0) {
       alert("Your cart is empty");
@@ -46,38 +51,35 @@ function Checkout() {
       productId: item._id || item.id,
       title: item.title,
       image: item.image,
-      price: Number(item.price),
-      qty: item.qty || item.quantity || 1,
+      price: Number(item.price) || 0,
+      qty: Number(item.qty || item.quantity || 1),
     }));
 
-    const hasInvalidProduct = orderItems.some(
-      (item) => !item.productId || !item.title || !item.price
+    const hasInvalidItem = orderItems.some(
+      (item) => !item.productId || !item.title || item.price <= 0 || item.qty <= 0
     );
 
-    if (hasInvalidProduct) {
-      alert("Some product data is missing. Please add products again.");
+    if (hasInvalidItem) {
+      alert("Some product data is missing. Please remove and add products again.");
       return;
     }
 
     try {
       setLoading(true);
 
-      const res = await fetch(
-        "https://mycart-mern-ecommerce.onrender.com/api/orders",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            items: orderItems,
-            shippingAddress: address,
-            paymentMethod,
-            totalAmount: Number(subtotal),
-          }),
-        }
-      );
+      const res = await fetch(`${API_URL}/orders`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          items: orderItems,
+          shippingAddress: address,
+          paymentMethod,
+          totalAmount: Number(subtotal) || 0,
+        }),
+      });
 
       const data = await res.json();
 
@@ -89,13 +91,13 @@ function Checkout() {
       clearCart();
       alert("Order placed successfully");
 
-      if (data.order && data.order._id) {
+      if (data.order?._id) {
         navigate(`/track/${data.order._id}`);
       } else {
         navigate("/orders");
       }
     } catch (error) {
-      console.log("Place order error:", error);
+      console.error("Place order error:", error);
       alert("Server error. Please try again.");
     } finally {
       setLoading(false);
@@ -118,7 +120,7 @@ function Checkout() {
           />
 
           <input
-            type="text"
+            type="tel"
             name="phone"
             placeholder="Phone Number"
             value={address.phone}
@@ -165,7 +167,7 @@ function Checkout() {
 
         <div className="checkout-total">
           <h3>Total Amount</h3>
-          <h2>${subtotal}.00</h2>
+          <h2>${Number(subtotal || 0).toFixed(2)}</h2>
         </div>
 
         <button type="submit" className="place-order-btn" disabled={loading}>
