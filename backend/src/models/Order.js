@@ -10,20 +10,58 @@ const orderSchema = new mongoose.Schema(
 
     items: [
       {
-        productId: String,
-        title: String,
-        image: String,
-        price: Number,
-        qty: Number,
+        productId: {
+          type: String,
+          required: true,
+        },
+
+        title: {
+          type: String,
+          required: true,
+        },
+
+        image: {
+          type: String,
+          required: true,
+        },
+
+        price: {
+          type: Number,
+          required: true,
+        },
+
+        qty: {
+          type: Number,
+          required: true,
+        },
       },
     ],
 
     shippingAddress: {
-      name: String,
-      phone: String,
-      address: String,
-      city: String,
-      pincode: String,
+      name: {
+        type: String,
+        required: true,
+      },
+
+      phone: {
+        type: String,
+        required: true,
+      },
+
+      address: {
+        type: String,
+        required: true,
+      },
+
+      city: {
+        type: String,
+        required: true,
+      },
+
+      pincode: {
+        type: String,
+        required: true,
+      },
     },
 
     paymentMethod: {
@@ -57,7 +95,9 @@ const orderSchema = new mongoose.Schema(
       required: true,
     },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+  }
 );
 
 module.exports = mongoose.model("Order", orderSchema);
