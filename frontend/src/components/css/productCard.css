@@ -22,6 +22,7 @@
   justify-content: center;
   position: relative;
   overflow: hidden;
+  padding: 10px;
 }
 
 .product-img-box img {
@@ -114,7 +115,7 @@
 }
 
 /* Mobile */
-@media (max-width: 480px) {
+/* @media (max-width: 480px) {
   .product-card {
     max-width: 100%;
     min-height: auto;
@@ -127,5 +128,16 @@
   .product-img-box img {
     width: 78%;
     height: 78%;
+  }
+
+} */
+ @media (max-width: 480px) {
+  .product-img-box {
+    aspect-ratio: 0.95 / 1;
+  }
+
+  .product-img-box img {
+    padding: 8px;
+    transform: scale(1.15);
   }
 }
