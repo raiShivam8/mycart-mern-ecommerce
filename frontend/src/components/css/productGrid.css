@@ -1,8 +1,8 @@
 .product-section {
   width: 100%;
-  padding: 0 10px 15px;
+  padding: 0 12px 18px;
   background: #fff;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .product-header {
@@ -10,23 +10,29 @@
 }
 
 .product-header h2 {
-  font-size: 38px;
+  font-size: clamp(24px, 6vw, 38px);
   font-weight: 800;
   color: #000;
 }
 
+/* Normal product grid */
 .slider-wrapper {
   width: 100%;
   overflow: hidden;
 }
 
 .product-slider {
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
   gap: 18px;
 }
 
-/* ONLY BEST DEALS HORIZONTAL */
+/* Best Deals horizontal slider */
+.best-deals .slider-wrapper {
+  overflow-x: hidden;
+}
+
 .best-deals .product-slider {
   display: flex;
   flex-direction: row;
@@ -38,13 +44,13 @@
 }
 
 .best-deals .product-card {
-  flex: 0 0 315px;
-  width: 315px;
-  min-width: 315px;
+  flex: 0 0 clamp(230px, 82vw, 315px);
+  width: clamp(230px, 82vw, 315px);
+  min-width: clamp(230px, 82vw, 315px);
 }
 
 .best-deals .product-slider::-webkit-scrollbar {
-  height: 10px;
+  height: 8px;
 }
 
 .best-deals .product-slider::-webkit-scrollbar-track {
@@ -56,44 +62,49 @@
   border-radius: 10px;
 }
 
-.deals-tabs{
-  display:flex;
-  gap:24px;
-  margin:20px 0 30px;
-  flex-wrap:wrap;
+/* Deals tabs */
+.deals-tabs {
+  display: flex;
+  gap: 12px;
+  margin: 20px 0 30px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
 }
 
-.deals-tabs button{
-  padding:10px 22px;
-  border:1px solid #111;
-  border-radius:50px;
-  background:#fff;
-  cursor:pointer;
-  font-size:17px;
-  transition:.3s;
+.deals-tabs button {
+  flex: 0 0 auto;
+  padding: 10px 18px;
+  border: 1px solid #111;
+  border-radius: 50px;
+  background: #fff;
+  cursor: pointer;
+  font-size: clamp(14px, 4vw, 17px);
+  transition: 0.3s;
 }
 
-.deals-tabs button:hover{
-  background:#111;
-  color:#fff;
+.deals-tabs button:hover {
+  background: #111;
+  color: #fff;
 }
 
-
-
+/* Category tabs */
 .category-tabs {
   display: flex;
-  gap: 14px;
-  margin: 30px 0;
-  flex-wrap: wrap;
+  gap: 10px;
+  margin: 22px 0;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding-bottom: 8px;
 }
 
 .category-tabs button {
-  padding: 14px 28px;
+  flex: 0 0 auto;
+  padding: 10px 18px;
   border: 1px solid #222;
   border-radius: 999px;
   background: white;
   cursor: pointer;
-  font-size: 18px;
+  font-size: clamp(14px, 4vw, 18px);
   font-weight: 500;
   transition: 0.3s;
 }
@@ -108,4 +119,26 @@
   background: #2563eb;
   color: white;
   border-color: #2563eb;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .product-section {
+    padding: 0 10px 16px;
+  }
+
+  .product-slider {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .best-deals .product-slider {
+    gap: 10px;
+  }
+
+  .best-deals .product-card {
+    flex-basis: 82vw;
+    width: 82vw;
+    min-width: 82vw;
+  }
 }
