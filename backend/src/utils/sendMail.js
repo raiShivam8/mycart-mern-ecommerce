@@ -1,38 +1,34 @@
-const nodemailer = require("nodemailer");
-
-console.log("SMTP HOST:", process.env.SMTP_HOST);
-console.log("SMTP PORT:", process.env.SMTP_PORT);
-console.log("SMTP USER:", process.env.SMTP_USER);
-
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: Number(process.env.SMTP_PORT || 587),
-  secure: false,
-  requireTLS: true,
-
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
-  },
-
-  connectionTimeout: 60000,
-  greetingTimeout: 60000,
-  socketTimeout: 60000,
-});
+const axios = require("axios");
 
 const sendMail = async (to, subject, html) => {
   console.log("Sending email to:", to);
 
-  const info = await transporter.sendMail({
-    from: `MyCart <${process.env.SMTP_USER}>`,
-    to,
-    subject,
-    html,
-  });
+  const res = await axios.post(
+    "https://api.brevo.com/v3/smtp/email",
+    {
+      sender: {
+        name: "MyCart",
+        email: process.env.SENDER_EMAIL,
+      },
+      to: [
+        {
+          email: to,
+        },
+      ],
+      subject,
+      htmlContent: html,
+    },
+    {
+      headers: {
+        "api-key": process.env.BREVO_API_KEY,
+        "Content-Type": "application/json",
+      },
+      timeout: 30000,
+    }
+  );
 
-  console.log("Email sent:", info.messageId);
-
-  return info;
+  console.log("Email sent:", res.data?.messageId || "success");
+  return res.data;
 };
 
 module.exports = sendMail;
