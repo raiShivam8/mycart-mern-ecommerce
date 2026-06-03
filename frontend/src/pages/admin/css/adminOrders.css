@@ -277,3 +277,20 @@
   background: #2563eb;
   border-radius: 10px;
 }
+
+
+.ordered-products {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 260px;
+}
+
+.ordered-product-item {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+  background: #f3f4f6;
+  padding: 6px 10px;
+  border-radius: 10px;
+}

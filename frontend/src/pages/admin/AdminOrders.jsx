@@ -18,11 +18,14 @@ function AdminOrders() {
   const fetchOrders = async () => {
     const token = localStorage.getItem("token");
 
-    const res = await fetch("https://mycart-mern-ecommerce.onrender.com/api/orders/admin/all", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const res = await fetch(
+      "https://mycart-mern-ecommerce.onrender.com/api/orders/admin/all",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     const data = await res.json();
     setOrders(Array.isArray(data) ? data : []);
@@ -35,14 +38,17 @@ function AdminOrders() {
   const updateStatus = async (id, status) => {
     const token = localStorage.getItem("token");
 
-    const res = await fetch(`https://mycart-mern-ecommerce.onrender.com/api/orders/${id}/status`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ orderStatus: status }),
-    });
+    const res = await fetch(
+      `https://mycart-mern-ecommerce.onrender.com/api/orders/${id}/status`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ orderStatus: status }),
+      }
+    );
 
     const data = await res.json();
 
@@ -74,6 +80,7 @@ function AdminOrders() {
             <tr>
               <th>Order ID</th>
               <th>Customer</th>
+              <th>Products</th>
               <th>Total</th>
               <th>Status</th>
               <th>Payment</th>
@@ -94,6 +101,16 @@ function AdminOrders() {
                   </td>
 
                   <td>{order.user?.name || "User"}</td>
+
+                  <td>
+                    <div className="ordered-products">
+                      {order.items?.map((item, index) => (
+                        <div className="ordered-product-item" key={index}>
+                          {item.title} × {item.qty}
+                        </div>
+                      ))}
+                    </div>
+                  </td>
 
                   <td>
                     <strong>${order.totalAmount || order.total || 0}</strong>
@@ -128,7 +145,7 @@ function AdminOrders() {
 
             {orders.length === 0 && (
               <tr>
-                <td colSpan="6" className="empty-table">
+                <td colSpan="7" className="empty-table">
                   No orders found
                 </td>
               </tr>
