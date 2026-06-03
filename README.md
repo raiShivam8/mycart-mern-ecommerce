@@ -1,64 +1,75 @@
-# MyCart Real MERN Ecommerce
+# MyCart MERN Ecommerce
 
-This project keeps the previous UI/assets and adds a real MERN backend.
+A full-stack MERN Ecommerce web application with authentication, admin panel, order management, live deployment, and email notifications.
 
-## Folders
+---
 
-```txt
-frontend/  React + Vite UI
-backend/   Node.js + Express + MongoDB
-```
+# 🚀 Live Demo
 
-## Backend Start
+Frontend (Vercel):
+https://your-vercel-url.vercel.app
+
+Backend (Render):
+https://your-render-url.onrender.com
+
+---
+
+# 🛠 Tech Stack
+
+## Frontend
+- React.js
+- Vite
+- React Router DOM
+- Axios
+- CSS
+
+## Backend
+- Node.js
+- Express.js
+- MongoDB Atlas
+- JWT Authentication
+- Brevo Email API
+
+## Deployment
+- Vercel (Frontend)
+- Render (Backend)
+
+---
+
+# ✨ Features
+
+## User Features
+- User Registration & Login
+- JWT Authentication
+- Product Listing
+- Product Details Page
+- Search Products
+- Add To Cart
+- Place Orders
+- Order History
+- Email Notifications
+
+## Admin Features
+- Admin Dashboard
+- Manage Orders
+- Update Order Status
+- Delivery Confirmation Email
+
+---
+
+# 📧 Email System
+
+Integrated Brevo API for:
+
+- User Order Confirmation Mail
+- Admin New Order Notification
+- Delivery Confirmation Mail
+
+---
+
+# 📦 Installation
+
+## Clone Repository
 
 ```bash
-cd backend
-npm install
-npm run seed
-npm run dev
-```
-
-Default `.env` already included:
-
-```env
-PORT=5000
-MONGO_URI=mongodb://127.0.0.1:27017/mycart_ecommerce
-JWT_SECRET=mycart_super_secret_key_123
-```
-
-If you use MongoDB Atlas, replace `MONGO_URI`.
-
-## Frontend Start
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-## Admin Login
-
-First registered user becomes admin automatically.
-
-Seed admin:
-```txt
-Email: admin@mycart.com
-Password: admin123
-```
-
-## Features
-
-- Previous UI style and original images
-- Login / Register
-- Safe password hashing with bcrypt
-- JWT authentication
-- Cart with localStorage
-- Buy Now button fixed
-- Checkout page
-- COD / Demo Card / Demo UPI
-- Order creation in MongoDB
-- My Orders page
-- Order tracking timeline
-- Admin dashboard
-- Admin order status update
-- MongoDB env fallback fix
+git clone https://github.com/your-username/mycart-mern-ecommerce.git
