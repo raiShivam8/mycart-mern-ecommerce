@@ -8,8 +8,16 @@ import {
   FaUndo,
 } from "react-icons/fa";
 
+import { products } from "../data/products";
 import { useCart } from "../context/CartContext";
 import "./css/detail.css";
+
+const getImageUrl = (image) => {
+  if (!image) return "";
+  if (image.startsWith("http")) return image;
+  if (image.startsWith("/images")) return image;
+  return `/images/${image}`;
+};
 
 function RatingStars({ rating = 4 }) {
   const value = Number(rating) || 4;
@@ -17,13 +25,8 @@ function RatingStars({ rating = 4 }) {
   return (
     <div className="detail-rating">
       {[1, 2, 3, 4, 5].map((star) =>
-        star <= value ? (
-          <FaStar key={star} />
-        ) : (
-          <FaRegStar key={star} />
-        )
+        star <= value ? <FaStar key={star} /> : <FaRegStar key={star} />
       )}
-
       <span>(121 Reviews)</span>
     </div>
   );
@@ -31,16 +34,23 @@ function RatingStars({ rating = 4 }) {
 
 function ProductDetail() {
   const { id } = useParams();
-
   const navigate = useNavigate();
-
   const { addToCart } = useCart();
 
   const [product, setProduct] = useState(null);
-
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const localProduct = products.find(
+      (item) => item.id === id || item._id === id
+    );
+
+    if (localProduct) {
+      setProduct(localProduct);
+      setLoading(false);
+      return;
+    }
+
     const fetchProduct = async () => {
       try {
         const res = await fetch(
@@ -49,9 +59,15 @@ function ProductDetail() {
 
         const data = await res.json();
 
+        if (!res.ok || data.message) {
+          setProduct(null);
+          return;
+        }
+
         setProduct(data);
       } catch (err) {
         console.log(err);
+        setProduct(null);
       } finally {
         setLoading(false);
       }
@@ -62,7 +78,6 @@ function ProductDetail() {
 
   const handleBuyNow = () => {
     addToCart(product);
-
     navigate("/checkout");
   };
 
@@ -70,7 +85,7 @@ function ProductDetail() {
     return <h2 className="detail-loading">Loading...</h2>;
   }
 
-  if (!product || product.message) {
+  if (!product) {
     return <h2 className="detail-loading">Item not found</h2>;
   }
 
@@ -78,35 +93,22 @@ function ProductDetail() {
     <section className="product-detail-page">
       <div className="product-detail-card">
         <div className="detail-image-box">
-          <img
-            src={product.image}
-            alt={product.title}
-          />
+          <img src={getImageUrl(product.image)} alt={product.title} />
         </div>
 
         <div className="detail-info">
-          <span className="detail-category">
-            {product.category}
-          </span>
+          <span className="detail-category">{product.category}</span>
 
           <h1>{product.title}</h1>
 
           <RatingStars rating={product.rating} />
 
-          <p className="detail-desc">
-            {product.info}
-          </p>
+          <p className="detail-desc">{product.info}</p>
 
           <div className="detail-price-row">
             <h2>${product.price}.00</h2>
 
-            <span
-              className={
-                product.stock > 0
-                  ? "in-stock"
-                  : "out-stock"
-              }
-            >
+            <span className={product.stock > 0 ? "in-stock" : "out-stock"}>
               {product.stock > 0
                 ? `In Stock (${product.stock})`
                 : "Out of Stock"}
@@ -114,16 +116,9 @@ function ProductDetail() {
           </div>
 
           <div className="detail-actions">
-            <button
-              onClick={() => addToCart(product)}
-            >
-              Add To Cart
-            </button>
+            <button onClick={() => addToCart(product)}>Add To Cart</button>
 
-            <button
-              className="buy-btn"
-              onClick={handleBuyNow}
-            >
+            <button className="buy-btn" onClick={handleBuyNow}>
               Buy Now
             </button>
           </div>
@@ -175,12 +170,9 @@ function ProductDetail() {
         <h2>Description</h2>
 
         <p className="long-desc">
-          {product.info} This product is
-          carefully selected for quality,
-          performance and customer
-          satisfaction. It is suitable for
-          daily use and offers excellent
-          value for money.
+          {product.info} This product is carefully selected for quality,
+          performance and customer satisfaction. It is suitable for daily use and
+          offers excellent value for money.
         </p>
       </div>
     </section>

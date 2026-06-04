@@ -11,7 +11,7 @@ export const products = [
   { id:'book-8', category:'books', image:img('War and Peace.png'), title:'War and Peace', price:20, info:"Leo Tolstoy's grand narrative of Russian society.", rating:4, stock:7 },
 
   { id:'laptop-1', category:'laptop', image:img('Macbook pro 13.png'), title:'Macbook pro 13', price:1099, info:'256GB, 8 core GPU, 8GB RAM.', rating:4, stock:8 },
-  { id:'laptop-2', category:'laptop', image:img('Macbook Pro 16.png'), title:'MacBook Pro 16', price:2399, info:'Powerful laptop with stunning Retina display.', rating:5, stock:5 },
+  { id:'laptop-2', category:'laptop', image:img('MacBook Pro 16.png'), title:'MacBook Pro 16', price:2399, info:'Powerful laptop with stunning Retina display.', rating:5, stock:5 },
   { id:'laptop-3', category:'laptop', image:img('HP Spectre x360.png'), title:'HP Spectre x360', price:1599, info:'Versatile 2-in-1 laptop with sleek design.', rating:5, stock:7 },
   { id:'laptop-4', category:'laptop', image:img('Dell XPS 15.png'), title:'Dell XPS 15', price:1899, info:'Premium laptop with InfinityEdge display.', rating:4, stock:4 },
   { id:'laptop-5', category:'laptop', image:img('Laptop sleeve MacBook.png'), title:'Laptop sleeve MacBook', price:59, info:'Organic cotton, fairtrade certified.', rating:4, stock:30 },
