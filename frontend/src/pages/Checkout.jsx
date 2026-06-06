@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import "./css/checkout.css";
 
-const API_URL = import.meta.env.VITE_API_URL || "https://mycart-mern-ecommerce.onrender.com/api";
+const API_URL =
+  import.meta.env.VITE_API_URL ||
+  "https://mycart-mern-ecommerce.onrender.com/api";
 
 function Checkout() {
   const { cartItems, subtotal, clearCart } = useCart();
@@ -21,14 +23,28 @@ function Checkout() {
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    if (name === "phone") {
+      const onlyNumbers = value.replace(/\D/g, "");
+
+      if (onlyNumbers.length <= 10) {
+        setAddress({
+          ...address,
+          phone: onlyNumbers,
+        });
+      }
+
+      return;
+    }
+
     setAddress({
       ...address,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
   };
 
   const placeOrder = async (e) => {
-    console.log('click')
     e.preventDefault();
 
     if (loading) return;
@@ -47,6 +63,11 @@ function Checkout() {
       return;
     }
 
+    if (!/^\d{10}$/.test(address.phone)) {
+      alert("Phone number must be exactly 10 digits");
+      return;
+    }
+
     const orderItems = cartItems.map((item) => ({
       productId: item._id || item.id,
       title: item.title,
@@ -56,7 +77,8 @@ function Checkout() {
     }));
 
     const hasInvalidItem = orderItems.some(
-      (item) => !item.productId || !item.title || item.price <= 0 || item.qty <= 0
+      (item) =>
+        !item.productId || !item.title || item.price <= 0 || item.qty <= 0
     );
 
     if (hasInvalidItem) {
@@ -125,6 +147,7 @@ function Checkout() {
             placeholder="Phone Number"
             value={address.phone}
             onChange={handleChange}
+            maxLength={10}
             required
           />
 

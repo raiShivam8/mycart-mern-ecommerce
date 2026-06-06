@@ -17,9 +17,18 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    if (name === "password") {
+      if (value.length <= 10) {
+        setForm({ ...form, password: value });
+      }
+      return;
+    }
+
     setForm({
       ...form,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
   };
 
@@ -29,6 +38,10 @@ function Login() {
 
     if (form.password.length < 6) {
       return setError("Password must be at least 6 characters");
+    }
+
+    if (form.password.length > 10) {
+      return setError("Password cannot exceed 10 characters");
     }
 
     try {
@@ -68,6 +81,7 @@ function Login() {
             value={form.password}
             onChange={handleChange}
             minLength={6}
+            maxLength={10}
             required
           />
 
@@ -80,7 +94,7 @@ function Login() {
         </div>
 
         <small className="password-note">
-          Password must be at least 6 characters
+          Password must be 6-10 characters
         </small>
 
         <button type="submit">Login</button>

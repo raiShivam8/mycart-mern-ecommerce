@@ -21,9 +21,26 @@ function Register() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    if (name === "phone") {
+      const onlyNumbers = value.replace(/\D/g, "");
+      if (onlyNumbers.length <= 10) {
+        setForm({ ...form, phone: onlyNumbers });
+      }
+      return;
+    }
+
+    if (name === "password" || name === "confirmPassword") {
+      if (value.length <= 10) {
+        setForm({ ...form, [name]: value });
+      }
+      return;
+    }
+
     setForm({
       ...form,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
   };
 
@@ -31,8 +48,16 @@ function Register() {
     e.preventDefault();
     setError("");
 
+    if (!/^\d{10}$/.test(form.phone)) {
+      return setError("Mobile number must be exactly 10 digits");
+    }
+
     if (form.password.length < 6) {
       return setError("Password must be at least 6 characters");
+    }
+
+    if (form.password.length > 10) {
+      return setError("Password cannot exceed 10 characters");
     }
 
     if (form.password !== form.confirmPassword) {
@@ -73,11 +98,13 @@ function Register() {
         />
 
         <input
-          type="text"
+          type="tel"
           name="phone"
           placeholder="Mobile"
           value={form.phone}
           onChange={handleChange}
+          maxLength={10}
+          required
         />
 
         <div className="password-box">
@@ -88,6 +115,7 @@ function Register() {
             value={form.password}
             onChange={handleChange}
             minLength={6}
+            maxLength={10}
             required
           />
 
@@ -95,7 +123,7 @@ function Register() {
             className="eye-icon"
             onClick={() => setShowPassword(!showPassword)}
           >
-            {showPassword ? <FaEye /> : <FaEyeSlash /> }
+            {showPassword ? <FaEye /> : <FaEyeSlash />}
           </span>
         </div>
 
@@ -107,6 +135,7 @@ function Register() {
             value={form.confirmPassword}
             onChange={handleChange}
             minLength={6}
+            maxLength={10}
             required
           />
 
@@ -119,7 +148,7 @@ function Register() {
         </div>
 
         <small className="password-note">
-          Password must be at least 6 characters
+          Mobile must be 10 digits. Password must be 6-10 characters.
         </small>
 
         <button type="submit">Register</button>
