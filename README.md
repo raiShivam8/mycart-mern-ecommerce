@@ -4,13 +4,19 @@ A full-stack MERN Ecommerce web application with authentication, admin panel, or
 
 ---
 
-# 🚀 Repository & Deployment
+# 🚀 Live Demo
 
-GitHub Repository:
-https://github.com/raiShivam8/mycart-mern-ecommerce.git
+Frontend (Vercel):
+https://mycart-mern-ecommerce.vercel.app
 
-Backend API (Render):
+Backend (Render):
 https://mycart-mern-ecommerce.onrender.com
+
+---
+
+# 📁 GitHub Repository
+
+https://github.com/raiShivam8/mycart-mern-ecommerce.git
 
 ---
 
