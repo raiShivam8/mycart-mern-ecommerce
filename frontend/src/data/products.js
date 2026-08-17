@@ -56,7 +56,7 @@ export const products = [
   // DEALS
   { id:'deal-1', category:'deals', image:img('Sony WH 1000XM4.png'), title:'Sony WH-1000XM4 Deal', price:349, info:'Special deal: noise cancelling headphones.', rating:5, stock:10 },
   { id:'deal-2', category:'deals', image:img('Apple AirPods Pro.png'), title:'Apple AirPods Pro Deal', price:249, info:'Active noise cancellation for immersive sound.', rating:5, stock:15 },
-  { id:'deal-3', category:'deals', image:img('Macbook Pro 16.png'), title:'MacBook Pro 16 Deal', price:2399, info:'Powerful laptop with stunning Retina display.', rating:5, stock:5 },
+  { id:'deal-3', category:'deals', image:img('MacBook Pro 16.png'), title:'MacBook Pro 16 Deal', price:2399, info:'Powerful laptop with stunning Retina display.', rating:5, stock:5 },
   { id:'deal-4', category:'deals', image:img('HP Spectre x360.png'), title:'HP Spectre x360 Deal', price:1599, info:'Versatile 2-in-1 laptop with sleek design.', rating:5, stock:5 },
   { id:'deal-5', category:'deals', image:img('Ipad Mini.png'), title:'Ipad Mini Deal', price:539, info:'Compact size and 5 colors available.', rating:5, stock:9 },
   { id:'deal-6', category:'deals', image:img('iPhone 13 Pro.png'), title:'iPhone 13 Pro Deal', price:1099, info:'Flagship smartphone with advanced features.', rating:5, stock:6 },

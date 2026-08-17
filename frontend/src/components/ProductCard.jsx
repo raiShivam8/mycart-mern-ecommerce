@@ -4,6 +4,13 @@ import { FaHeart, FaRegStar, FaStar } from "react-icons/fa";
 import { useCart } from "../context/CartContext";
 import "./css/productCard.css";
 
+const getImageUrl = (image) => {
+  if (!image) return "/images/MacBook Pro 16.png";
+  if (image.startsWith("http")) return image;
+  if (image.startsWith("/images")) return image;
+  return `/images/${image}`;
+};
+
 function RatingStars({ rating = 0 }) {
   const value = Number(rating) || 0;
   return (
@@ -25,7 +32,14 @@ function ProductCard({ product }) {
         to={`/product/${product._id || product.id}`}
         className="product-img-box"
       >
-        <img src={product.image} alt={product.title} />
+        <img
+          src={getImageUrl(product.image)}
+          alt={product.title}
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = "/images/MacBook Pro 16.png";
+          }}
+        />
         <button
           className="heart"
           onClick={(e) => {
