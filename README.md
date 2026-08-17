@@ -1,16 +1,16 @@
 # MyCart MERN Ecommerce
 
-A full-stack MERN Ecommerce web application with authentication, admin panel, order management, live deployment, and email notifications.
+A full-stack MERN Ecommerce web application with authentication, admin panel, order management, live deployment, responsive UI, dark mode, and email notifications.
 
 ---
 
-# 🚀 Live Demo
+# 🚀 Repository & Deployment
 
-Frontend (Vercel):
-https://your-vercel-url.vercel.app
+GitHub Repository:
+https://github.com/raiShivam8/mycart-mern-ecommerce.git
 
-Backend (Render):
-https://your-render-url.onrender.com
+Backend API (Render):
+https://mycart-mern-ecommerce.onrender.com
 
 ---
 
@@ -20,13 +20,13 @@ https://your-render-url.onrender.com
 - React.js
 - Vite
 - React Router DOM
-- Axios
-- CSS
+- Context API (Cart & Theme)
+- CSS (Responsive & Dark Mode)
 
 ## Backend
 - Node.js
 - Express.js
-- MongoDB Atlas
+- MongoDB Atlas / Local MongoDB
 - JWT Authentication
 - Brevo Email API
 
@@ -41,29 +41,20 @@ https://your-render-url.onrender.com
 ## User Features
 - User Registration & Login
 - JWT Authentication
-- Product Listing
-- Product Details Page
-- Search Products
-- Add To Cart
-- Place Orders
-- Order History
+- Dynamic Dark / Light Theme Toggle
+- Fully Responsive (Mobile, Tablet, Desktop)
+- Complete Product Catalog & Search
+- Product Details & Ratings
+- Cart & Checkout System
+- Order History & Live Tracking
 - Email Notifications
 
 ## Admin Features
-- Admin Dashboard
-- Manage Orders
-- Update Order Status
-- Delivery Confirmation Email
-
----
-
-# 📧 Email System
-
-Integrated Brevo API for:
-
-- User Order Confirmation Mail
-- Admin New Order Notification
-- Delivery Confirmation Mail
+- Admin Overview Dashboard
+- Manage & Edit Products
+- Manage Customer Orders & Status Updates
+- User Role Management
+- Delivery Confirmation Emails
 
 ---
 
@@ -72,4 +63,5 @@ Integrated Brevo API for:
 ## Clone Repository
 
 ```bash
-git clone https://github.com/your-username/mycart-mern-ecommerce.git
+git clone https://github.com/raiShivam8/mycart-mern-ecommerce.git
+```
