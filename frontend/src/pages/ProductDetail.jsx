@@ -8,7 +8,7 @@ import {
   FaUndo,
 } from "react-icons/fa";
 
-import { products } from "../data/products";
+import { products as localProducts } from "../data/products";
 import { useCart } from "../context/CartContext";
 import "./css/detail.css";
 import { API_BASE_URL } from "../config/apiConfig";
@@ -42,33 +42,36 @@ function ProductDetail() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const localProduct = products.find(
-      (item) => item.id === id || item._id === id
+    const localProduct = localProducts.find(
+      (item) =>
+        item.id === id ||
+        item._id === id ||
+        item.title?.toLowerCase() === decodeURIComponent(id || "").toLowerCase()
     );
 
     if (localProduct) {
       setProduct(localProduct);
       setLoading(false);
-      return;
     }
 
     const fetchProduct = async () => {
       try {
-        const res = await fetch(
-          `${API_BASE_URL}/products/${id}`
-        );
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 6000);
 
-        const data = await res.json();
+        const res = await fetch(`${API_BASE_URL}/products/${id}`, {
+          signal: controller.signal,
+        });
+        clearTimeout(timeoutId);
 
-        if (!res.ok || data.message) {
-          setProduct(null);
-          return;
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.title) {
+            setProduct(data);
+          }
         }
-
-        setProduct(data);
       } catch (err) {
-        console.log(err);
-        setProduct(null);
+        console.warn("API fetch failed for product detail, using fallback:", err);
       } finally {
         setLoading(false);
       }
@@ -78,8 +81,10 @@ function ProductDetail() {
   }, [id]);
 
   const handleBuyNow = () => {
-    addToCart(product);
-    navigate("/checkout");
+    if (product) {
+      addToCart(product);
+      navigate("/checkout");
+    }
   };
 
   if (loading) {
