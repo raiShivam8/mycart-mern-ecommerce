@@ -3,6 +3,7 @@ import "./css/productGrid.css";
 import ProductCard from "./ProductCard";
 
 const categories = [
+  { name: "All", slug: "all" },
   { name: "Books", slug: "books" },
   { name: "Laptop", slug: "laptop" },
   { name: "Mobile", slug: "mobile" },
@@ -12,10 +13,12 @@ const categories = [
 ];
 
 function ProductGrid({ title, products = [], showCategories = false }) {
-  const [activeCategory, setActiveCategory] = useState("books");
+  const [activeCategory, setActiveCategory] = useState("all");
 
   const filteredProducts = showCategories
-    ? products.filter((item) => item.category === activeCategory)
+    ? activeCategory === "all"
+      ? products
+      : products.filter((item) => item.category === activeCategory)
     : products;
 
   return (

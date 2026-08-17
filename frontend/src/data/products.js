@@ -1,6 +1,7 @@
 const img = (name) => `/images/${name}`;
 
 export const products = [
+  // BOOKS
   { id:'book-1', category:'books', image:img('The Great Gatsby.png'), title:'The Great Gatsby', price:15, info:'A classic novel of the Jazz Age, portraying the decadence of the 1920s.', rating:5, stock:20 },
   { id:'book-2', category:'books', image:img('1984.png'), title:'1984', price:12, info:"George Orwell's dystopian novel about a totalitarian regime.", rating:4, stock:25 },
   { id:'book-3', category:'books', image:img('To Kill a Mockingbird.png'), title:'To Kill a Mockingbird', price:10, info:'A profound novel about racial injustice in the Deep South.', rating:5, stock:15 },
@@ -10,6 +11,7 @@ export const products = [
   { id:'book-7', category:'books', image:img('Moby-Dick.png'), title:'Moby-Dick', price:18, info:"Herman Melville's epic tale of obsession and the sea.", rating:4, stock:9 },
   { id:'book-8', category:'books', image:img('War and Peace.png'), title:'War and Peace', price:20, info:"Leo Tolstoy's grand narrative of Russian society.", rating:4, stock:7 },
 
+  // LAPTOPS
   { id:'laptop-1', category:'laptop', image:img('Macbook pro 13.png'), title:'Macbook pro 13', price:1099, info:'256GB, 8 core GPU, 8GB RAM.', rating:4, stock:8 },
   { id:'laptop-2', category:'laptop', image:img('MacBook Pro 16.png'), title:'MacBook Pro 16', price:2399, info:'Powerful laptop with stunning Retina display.', rating:5, stock:5 },
   { id:'laptop-3', category:'laptop', image:img('HP Spectre x360.png'), title:'HP Spectre x360', price:1599, info:'Versatile 2-in-1 laptop with sleek design.', rating:5, stock:7 },
@@ -21,6 +23,7 @@ export const products = [
   { id:'laptop-9', category:'laptop', image:img('Acer Swift 5.png'), title:'Acer Swift 5', price:999, info:'Ultralight laptop with powerful performance.', rating:3, stock:12 },
   { id:'laptop-10', category:'laptop', image:img('Razer Blade 15.png'), title:'Razer Blade 15', price:2199, info:'Gaming laptop with high-refresh rate display.', rating:5, stock:4 },
 
+  // MOBILES
   { id:'mobile-1', category:'mobile', image:img('Ipad Mini.png'), title:'Ipad Mini', price:539, info:'Compact size and 5 colors available.', rating:5, stock:13 },
   { id:'mobile-2', category:'mobile', image:img('iPhone 13 Pro.png'), title:'iPhone 13 Pro', price:1099, info:'Flagship smartphone with advanced features.', rating:5, stock:10 },
   { id:'mobile-3', category:'mobile', image:img('Samsung Galaxy S21.png'), title:'Samsung Galaxy S21', price:999, info:'High-performance smartphone with excellent camera.', rating:4, stock:10 },
@@ -30,6 +33,7 @@ export const products = [
   { id:'mobile-7', category:'mobile', image:img('iPhone 12 Mini.png'), title:'iPhone 12 Mini', price:699, info:'Compact iPhone with powerful features.', rating:4, stock:9 },
   { id:'mobile-8', category:'mobile', image:img('Samsung Galaxy Note 20.png'), title:'Samsung Galaxy Note 20', price:799, info:'Premium smartphone with S Pen and large display.', rating:4, stock:7 },
 
+  // HEADPHONES
   { id:'headphone-1', category:'headphone', image:img('AirPods Max.png'), title:'AirPods Max', price:559, info:'A perfect balance of high-fidelity audio.', rating:3, stock:12 },
   { id:'headphone-2', category:'headphone', image:img('Sony WH1000XM4.png'), title:'Sony WH1000XM4', price:349, info:'Industry leading noise cancellation with high resolution audio.', rating:5, stock:15 },
   { id:'headphone-3', category:'headphone', image:img('Bose QuietComfort 35.png'), title:'Bose QuietComfort 35', price:299, info:'Wireless Bluetooth headphones with world-class noise.', rating:4, stock:13 },
@@ -41,6 +45,15 @@ export const products = [
   { id:'headphone-9', category:'headphone', image:img('HomePod mini.png'), title:'HomePod mini', price:239, info:'5 colors available.', rating:5, stock:12 },
   { id:'headphone-10', category:'headphone', image:img('AKG N700NC M2.png'), title:'AKG N700NC M2', price:299, info:'Wireless over-ear noise cancelling headphones.', rating:4, stock:10 },
 
+  // FURNITURE
+  { id:'furniture-1', category:'furniture', image:img('HP Spectre x360.png'), title:'Modern Luxury Sofa', price:899, info:'Comfortable 3-seater sofa for living rooms.', rating:5, stock:10 },
+  { id:'furniture-2', category:'furniture', image:img('MacBook Pro 16.png'), title:'Ergonomic Office Chair', price:249, info:'Adjustable mesh chair for working comfort.', rating:4, stock:15 },
+
+  // HANDBAGS
+  { id:'handbag-1', category:'handbag', image:img('Laptop sleeve MacBook.png'), title:'Leather Tote Handbag', price:129, info:'Premium genuine leather handbag for everyday use.', rating:5, stock:20 },
+  { id:'handbag-2', category:'handbag', image:img('Flower Laptop Sleeve.png'), title:'Designer Shoulder Bag', price:189, info:'Elegant shoulder bag with spacious compartments.', rating:4, stock:12 },
+
+  // DEALS
   { id:'deal-1', category:'deals', image:img('Sony WH 1000XM4.png'), title:'Sony WH-1000XM4 Deal', price:349, info:'Special deal: noise cancelling headphones.', rating:5, stock:10 },
   { id:'deal-2', category:'deals', image:img('Apple AirPods Pro.png'), title:'Apple AirPods Pro Deal', price:249, info:'Active noise cancellation for immersive sound.', rating:5, stock:15 },
   { id:'deal-3', category:'deals', image:img('Macbook Pro 16.png'), title:'MacBook Pro 16 Deal', price:2399, info:'Powerful laptop with stunning Retina display.', rating:5, stock:5 },
