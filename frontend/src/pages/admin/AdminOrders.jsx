@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./css/adminOrders.css";
+import { API_BASE_URL } from "../../config/apiConfig";
 
 const statusOptions = [
   "Pending",
@@ -19,7 +20,7 @@ function AdminOrders() {
     const token = localStorage.getItem("token");
 
     const res = await fetch(
-      "https://mycart-mern-ecommerce.onrender.com/api/orders/admin/all",
+      `${API_BASE_URL}/orders/admin/all`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -39,7 +40,7 @@ function AdminOrders() {
     const token = localStorage.getItem("token");
 
     const res = await fetch(
-      `https://mycart-mern-ecommerce.onrender.com/api/orders/${id}/status`,
+      `${API_BASE_URL}/orders/${id}/status`,
       {
         method: "PUT",
         headers: {

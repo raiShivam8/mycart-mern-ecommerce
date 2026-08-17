@@ -1,1 +1,103 @@
-.hero{height:65vh;width:100%;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}.hero img{height:100%;width:100%;object-fit:cover}.hero-arrow{font-size:44px;position:absolute;top:45%;z-index:5;cursor:pointer}.hero-arrow.left{left:45px}.hero-arrow.right{right:45px}.hero-arrow:hover{color:#555}.dots{position:absolute;bottom:12px;display:flex;gap:12px}.dots button{height:8px;width:26px;border:none;border-radius:99px;background:#d1d5db;cursor:pointer}.dots .active{background:#111}
+.hero {
+  height: 65vh;
+  min-height: 380px;
+  max-height: 600px;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.hero-arrow {
+  font-size: 44px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 50%;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.hero-arrow.left {
+  left: 30px;
+}
+
+.hero-arrow.right {
+  right: 30px;
+}
+
+.hero-arrow:hover {
+  background: #ffffff;
+  color: #2563eb;
+}
+
+.dots {
+  position: absolute;
+  bottom: 14px;
+  display: flex;
+  gap: 10px;
+  z-index: 5;
+}
+
+.dots button {
+  height: 8px;
+  width: 24px;
+  border: none;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.dots .active {
+  background: #2563eb;
+  width: 32px;
+}
+
+/* TABLET & MOBILE RESPONSIVE SLIDER */
+@media (max-width: 768px) {
+  .hero {
+    height: 40vh;
+    min-height: 220px;
+  }
+
+  .hero-arrow {
+    font-size: 28px;
+    padding: 4px;
+  }
+
+  .hero-arrow.left {
+    left: 10px;
+  }
+
+  .hero-arrow.right {
+    right: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    height: 32vh;
+    min-height: 180px;
+  }
+
+  .hero-arrow {
+    font-size: 22px;
+    padding: 2px;
+  }
+}

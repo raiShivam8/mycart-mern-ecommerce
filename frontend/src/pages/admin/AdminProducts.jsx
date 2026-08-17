@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./css/adminProducts.css";
+import { API_BASE_URL } from "../../config/apiConfig";
 
 function AdminProducts() {
   const [products, setProducts] = useState([]);
@@ -16,7 +17,7 @@ function AdminProducts() {
   const token = localStorage.getItem("token");
 
   const fetchProducts = async () => {
-    const res = await fetch("https://mycart-mern-ecommerce.onrender.com/api/products");
+    const res = await fetch(`${API_BASE_URL}/products`);
     const data = await res.json();
     setProducts(Array.isArray(data) ? data : []);
   };
@@ -35,7 +36,7 @@ function AdminProducts() {
   const addProduct = async (e) => {
     e.preventDefault();
 
-    const res = await fetch("https://mycart-mern-ecommerce.onrender.com/api/products", {
+    const res = await fetch(`${API_BASE_URL}/products`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -69,7 +70,7 @@ function AdminProducts() {
   const deleteProduct = async (id) => {
     if (!window.confirm("Delete this product?")) return;
 
-    await fetch(`https://mycart-mern-ecommerce.onrender.com/api/products/${id}`, {
+    await fetch(`${API_BASE_URL}/products/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,

@@ -1,7 +1,50 @@
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Segoe UI',Arial,sans-serif;background:#fff;color:#111827;scroll-behavior:smooth}
-a{text-decoration:none;color:inherit}
-button,input,select{font-family:inherit}
-main{min-height:70vh}
-.page-message{padding:110px 5%;text-align:center}
-.error{color:#dc2626;background:#fee2e2;padding:8px;border-radius:8px;margin-bottom:10px}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, Arial, sans-serif;
+  background: #ffffff;
+  color: #0f172a;
+  scroll-behavior: smooth;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html.dark body {
+  background: #0b0f19;
+  color: #f8fafc;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+}
+
+main {
+  min-height: 70vh;
+}
+
+.page-message {
+  padding: 110px 5%;
+  text-align: center;
+}
+
+.error {
+  color: #dc2626;
+  background: #fee2e2;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+html.dark .error {
+  color: #fca5a5;
+  background: #450a0a;
+}

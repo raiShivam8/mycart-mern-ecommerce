@@ -1,5 +1,6 @@
 .admin-support-page {
   padding: 30px;
+  min-height: 100vh;
 }
 
 .admin-support-head {
@@ -17,16 +18,22 @@
 }
 
 .support-message-grid {
-  max-height: 620px;
+  max-height: 560px;
   overflow-y: auto;
+  overflow-x: hidden;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
   gap: 22px;
-  padding-right: 8px;
+  padding-right: 10px;
 }
 
 .support-message-grid::-webkit-scrollbar {
   width: 8px;
+}
+
+.support-message-grid::-webkit-scrollbar-track {
+  background: #eef2f7;
+  border-radius: 10px;
 }
 
 .support-message-grid::-webkit-scrollbar-thumb {
@@ -39,6 +46,7 @@
   padding: 24px;
   border-radius: 22px;
   box-shadow: 0 8px 28px rgba(0,0,0,0.07);
+  transition: 0.3s;
 }
 
 .support-message-top {
@@ -76,6 +84,7 @@
 .support-message-card h2 {
   font-size: 21px;
   margin-bottom: 10px;
+  color: #0f172a;
 }
 
 .support-text {
@@ -89,6 +98,7 @@
   padding: 14px;
   border-radius: 14px;
   margin-bottom: 16px;
+  transition: 0.3s;
 }
 
 .support-meta p {
@@ -109,6 +119,11 @@
   border-radius: 12px;
   font-weight: 800;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+.support-actions button:hover {
+  background: #1d4ed8;
 }
 
 .support-actions .delete-support {
@@ -116,33 +131,42 @@
   color: #b91c1c;
 }
 
+.support-actions .delete-support:hover {
+  background: #ef4444;
+  color: white;
+}
+
 .no-support {
   background: white;
   padding: 30px;
   border-radius: 18px;
+  color: #0f172a;
 }
 
-
-.support-message-grid {
-  max-height: 560px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-  gap: 22px;
-  padding-right: 10px;
+.no-support h2 {
+  color: #0f172a;
 }
 
-.support-message-grid::-webkit-scrollbar {
-  width: 8px;
+/* DARK MODE */
+html.dark .admin-support-head h1,
+html.dark .support-message-card h2,
+html.dark .no-support h2 {
+  color: #f8fafc;
 }
 
-.support-message-grid::-webkit-scrollbar-track {
-  background: #eef2f7;
-  border-radius: 10px;
+html.dark .admin-support-head p,
+html.dark .support-text,
+html.dark .support-meta p {
+  color: #cbd5e1;
 }
 
-.support-message-grid::-webkit-scrollbar-thumb {
-  background: #2563eb;
-  border-radius: 10px;
+html.dark .support-message-card,
+html.dark .no-support {
+  background: #1e293b;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
+  border: 1px solid #334155;
+}
+
+html.dark .support-meta {
+  background: #0f172a;
 }

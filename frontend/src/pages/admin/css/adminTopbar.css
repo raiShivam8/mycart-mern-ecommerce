@@ -6,10 +6,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 .admin-topbar h3 {
   font-size: 22px;
+  color: #0f172a;
 }
 
 .admin-topbar p {
@@ -31,4 +33,27 @@
   border-radius: 10px;
   font-weight: 700;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+.admin-profile button:hover {
+  background: #1d4ed8;
+}
+
+/* DARK MODE */
+html.dark .admin-topbar {
+  background: #1e293b;
+  border-bottom-color: #334155;
+}
+
+html.dark .admin-topbar h3 {
+  color: #f8fafc;
+}
+
+html.dark .admin-topbar p {
+  color: #cbd5e1;
+}
+
+html.dark .admin-profile span {
+  color: #f8fafc;
 }

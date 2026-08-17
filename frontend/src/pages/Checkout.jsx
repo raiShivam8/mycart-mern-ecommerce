@@ -2,10 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import "./css/checkout.css";
-
-const API_URL =
-  import.meta.env.VITE_API_URL ||
-  "https://mycart-mern-ecommerce.onrender.com/api";
+import { API_BASE_URL as API_URL } from "../config/apiConfig";
 
 function Checkout() {
   const { cartItems, subtotal, clearCart } = useCart();

@@ -4,6 +4,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import { API_BASE_URL } from "../config/apiConfig";
 
 const AuthContext = createContext();
 
@@ -31,7 +32,7 @@ export function AuthProvider({ children }) {
   // REGISTER
   const register = async (name, email, password) => {
     const res = await fetch(
-      "https://mycart-mern-ecommerce.onrender.com/api/auth/register",
+      `${API_BASE_URL}/auth/register`,
       {
         method: "POST",
 
@@ -59,7 +60,7 @@ export function AuthProvider({ children }) {
   // LOGIN
   const login = async (email, password) => {
     const res = await fetch(
-      "https://mycart-mern-ecommerce.onrender.com/api/auth/login",
+      `${API_BASE_URL}/auth/login`,
       {
         method: "POST",
 

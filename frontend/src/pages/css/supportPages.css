@@ -2,6 +2,7 @@
   min-height: 100vh;
   background: #f4f7fb;
   padding: 50px 6%;
+  transition: background-color 0.3s;
 }
 
 .support-container {
@@ -38,11 +39,13 @@
   border-radius: 24px;
   padding: 32px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  transition: 0.3s;
 }
 
 .support-card h2 {
   margin-bottom: 18px;
   font-size: 28px;
+  color: #0f172a;
 }
 
 .support-card p {
@@ -65,6 +68,9 @@
   padding: 14px;
   font-size: 15px;
   outline: none;
+  background: #fff;
+  color: #0f172a;
+  transition: 0.3s;
 }
 
 .support-form textarea {
@@ -80,6 +86,11 @@
   border-radius: 14px;
   font-weight: 700;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+.support-form button:hover {
+  background: #1d4ed8;
 }
 
 .support-info {
@@ -92,10 +103,12 @@
   background: #f8fafc;
   padding: 18px;
   border-radius: 16px;
+  transition: 0.3s;
 }
 
 .support-box h3 {
   margin-bottom: 8px;
+  color: #0f172a;
 }
 
 .support-box p {
@@ -109,6 +122,50 @@
 
 .faq-item h4 {
   margin-bottom: 8px;
+  color: #0f172a;
+}
+
+/* DARK MODE */
+html.dark .support-page {
+  background: #0b0f19;
+}
+
+html.dark .support-card {
+  background: #1e293b;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  border: 1px solid #334155;
+}
+
+html.dark .support-card h2,
+html.dark .support-box h3,
+html.dark .faq-item h4 {
+  color: #f8fafc;
+}
+
+html.dark .support-card p,
+html.dark .support-box p,
+html.dark .faq-item p {
+  color: #cbd5e1;
+}
+
+html.dark .support-form input,
+html.dark .support-form textarea {
+  background: #0f172a;
+  border-color: #334155;
+  color: #f8fafc;
+}
+
+html.dark .support-form input::placeholder,
+html.dark .support-form textarea::placeholder {
+  color: #94a3b8;
+}
+
+html.dark .support-box {
+  background: #0f172a;
+}
+
+html.dark .faq-item {
+  border-bottom-color: #334155;
 }
 
 @media (max-width: 900px) {
@@ -122,5 +179,25 @@
 
   .support-hero h1 {
     font-size: 34px;
+  }
+}
+
+@media (max-width: 550px) {
+  .support-page {
+    padding: 24px 16px;
+  }
+
+  .support-hero {
+    padding: 24px 18px;
+    border-radius: 20px;
+  }
+
+  .support-hero h1 {
+    font-size: 26px;
+  }
+
+  .support-card {
+    padding: 22px 18px;
+    border-radius: 18px;
   }
 }

@@ -11,6 +11,7 @@ import {
 import { products } from "../data/products";
 import { useCart } from "../context/CartContext";
 import "./css/detail.css";
+import { API_BASE_URL } from "../config/apiConfig";
 
 const getImageUrl = (image) => {
   if (!image) return "";
@@ -54,7 +55,7 @@ function ProductDetail() {
     const fetchProduct = async () => {
       try {
         const res = await fetch(
-          `https://mycart-mern-ecommerce.onrender.com/api/products/${id}`
+          `${API_BASE_URL}/products/${id}`
         );
 
         const data = await res.json();

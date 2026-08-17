@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ProductGrid from "../components/ProductGrid";
+import { API_BASE_URL } from "../config/apiConfig";
 
 function CategoryPage() {
   const { category } = useParams();
@@ -9,7 +10,7 @@ function CategoryPage() {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const res = await fetch("https://mycart-mern-ecommerce.onrender.com/api/products");
+      const res = await fetch(`${API_BASE_URL}/products`);
 
       const data = await res.json();
 

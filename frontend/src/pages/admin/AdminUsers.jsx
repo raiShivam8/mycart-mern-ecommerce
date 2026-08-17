@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./css/adminUsers.css";
+import { API_BASE_URL } from "../../config/apiConfig";
 
 function AdminUsers() {
   const [users, setUsers] = useState([]);
@@ -8,7 +9,7 @@ function AdminUsers() {
     const fetchUsers = async () => {
       const token = localStorage.getItem("token");
 
-      const res = await fetch("https://mycart-mern-ecommerce.onrender.com/api/admin/users", {
+      const res = await fetch(`${API_BASE_URL}/admin/users`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

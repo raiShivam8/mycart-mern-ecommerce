@@ -1,5 +1,6 @@
 .admin-users-page {
   padding: 30px;
+  min-height: 100vh;
 }
 
 .admin-users-head {
@@ -11,6 +12,7 @@
 
 .admin-users-head h1 {
   font-size: 32px;
+  color: #0f172a;
 }
 
 .admin-users-head button {
@@ -21,81 +23,12 @@
   border-radius: 10px;
   font-weight: 700;
   cursor: pointer;
+  transition: 0.3s;
 }
 
-.admin-users-table-box {
-  background: white;
-  border-radius: 18px;
-  overflow-x: auto;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.07);
+.admin-users-head button:hover {
+  background: #1d4ed8;
 }
-
-.admin-users-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.admin-users-table th,
-.admin-users-table td {
-  padding: 16px;
-  text-align: left;
-  border-bottom: 1px solid #e5e7eb;
-}
-
-.admin-users-table th {
-  background: #f9fafb;
-  color: #374151;
-  font-weight: 800;
-}
-
-.role-badge,
-.status-badge {
-  padding: 6px 12px;
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 800;
-}
-
-.role-badge.admin {
-  background: #dbeafe;
-  color: #1d4ed8;
-}
-
-.role-badge.user {
-  background: #f3f4f6;
-  color: #374151;
-}
-
-.status-badge.active {
-  background: #dcfce7;
-  color: #15803d;
-}
-
-.status-badge.inactive {
-  background: #fee2e2;
-  color: #b91c1c;
-}
-
-.edit-user-btn,
-.delete-user-btn {
-  border: none;
-  padding: 8px 13px;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-right: 8px;
-  font-weight: 700;
-}
-
-.edit-user-btn {
-  background: #e0f2fe;
-  color: #0369a1;
-}
-
-.delete-user-btn {
-  background: #fee2e2;
-  color: #b91c1c;
-}
-
 
 .admin-users-head p {
   margin-top: 6px;
@@ -106,13 +39,16 @@
 .admin-users-table-wrapper {
   max-height: 520px;
   overflow-y: auto;
+  overflow-x: auto;
   border-radius: 22px;
   background: white;
   box-shadow: 0 8px 28px rgba(0,0,0,0.07);
+  transition: 0.3s;
 }
 
 .admin-users-table-wrapper::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 
 .admin-users-table-wrapper::-webkit-scrollbar-track {
@@ -126,7 +62,9 @@
 
 .admin-users-table {
   width: 100%;
+  min-width: 800px;
   border-collapse: collapse;
+  background: transparent;
 }
 
 .admin-users-table thead {
@@ -143,6 +81,7 @@
   font-weight: 800;
   color: #0f172a;
   border-bottom: 1px solid #e2e8f0;
+  background: #f9fafb;
 }
 
 .admin-users-table td {
@@ -156,7 +95,7 @@
   transition: 0.3s;
 }
 
-.admin-users-table tbody tr:hover {
+.admin-users-table tbody tr:hover td {
   background: #f8fafc;
 }
 
@@ -210,26 +149,40 @@
   font-weight: 800;
 }
 
-
-.admin-users-table-wrapper {
-  max-height: 520px;
-  overflow-y: auto;
-  overflow-x: auto;
-  border-radius: 22px;
-  background: white;
-  box-shadow: 0 8px 28px rgba(0,0,0,0.07);
+/* DARK MODE STYLES */
+html.dark .admin-users-head h1,
+html.dark .user-name,
+html.dark .admin-users-table td {
+  color: #f8fafc;
 }
 
-.admin-users-table {
-  min-width: 800px;
+html.dark .admin-users-head p {
+  color: #cbd5e1;
 }
 
-.admin-users-table-wrapper::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+html.dark .admin-users-table-wrapper,
+html.dark .admin-users-table {
+  background: #1e293b;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
+  border: 1px solid #334155;
 }
 
-.admin-users-table-wrapper::-webkit-scrollbar-thumb {
-  background: #2563eb;
-  border-radius: 10px;
+html.dark .admin-users-table thead,
+html.dark .admin-users-table th {
+  background: #0f172a;
+  color: #f8fafc;
+  border-bottom-color: #334155;
+}
+
+html.dark .admin-users-table td {
+  background: #1e293b;
+  border-bottom-color: #334155;
+}
+
+html.dark .admin-users-table tbody tr:hover td {
+  background: #334155;
+}
+
+html.dark .empty-users {
+  color: #cbd5e1;
 }

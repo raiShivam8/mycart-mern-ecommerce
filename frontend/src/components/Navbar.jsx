@@ -3,17 +3,19 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { BiCart } from "react-icons/bi";
 import { CiSearch, CiMobile3, CiHeadphones } from "react-icons/ci";
 import { MdKeyboardArrowDown } from "react-icons/md";
-import { IoBookOutline, IoMenu, IoClose } from "react-icons/io5";
+import { IoBookOutline, IoMenu, IoClose, IoSunny, IoMoon } from "react-icons/io5";
 import { PiLaptop, PiHandbagLight } from "react-icons/pi";
 import { GiRockingChair } from "react-icons/gi";
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
+import { useTheme } from "../context/ThemeContext";
 import "./css/navbar.css";
 
 function Navbar() {
   const navigate = useNavigate();
   const { cartCount } = useCart();
   const { user, logout } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const [openMenu, setOpenMenu] = useState(false);
 
   const handleSearch = (e) => {
@@ -32,10 +34,13 @@ function Navbar() {
         </NavLink>
 
         <div className="mobile-actions">
+          <button className="theme-toggle-btn" onClick={toggleTheme} title="Toggle Dark/Light Mode">
+            {theme === "dark" ? <IoSunny /> : <IoMoon />}
+          </button>
+
           <NavLink className="cart-btn-nav" to="/cart" onClick={closeMenu}>
             <BiCart />
             <span>{cartCount}</span>
-            Cart
           </NavLink>
 
           <button className="menu-toggle" onClick={() => setOpenMenu(!openMenu)}>
@@ -97,6 +102,10 @@ function Navbar() {
         </div>
 
         <div className="nav-actions">
+          <button className="theme-toggle-btn desktop-theme" onClick={toggleTheme} title="Toggle Dark/Light Mode">
+            {theme === "dark" ? <IoSunny /> : <IoMoon />}
+          </button>
+
           <NavLink className="cart-btn-nav desktop-cart" to="/cart">
             <BiCart className="cart-logo" />
             <span>{cartCount}</span>

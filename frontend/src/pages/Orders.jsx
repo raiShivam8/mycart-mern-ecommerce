@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./css/orders.css";
+import { API_BASE_URL } from "../config/apiConfig";
 
 const steps = [
   "Pending",
@@ -18,7 +19,7 @@ function Orders() {
     const fetchOrders = async () => {
       const token = localStorage.getItem("token");
 
-      const res = await fetch("https://mycart-mern-ecommerce.onrender.com/api/orders/my-orders", {
+      const res = await fetch(`${API_BASE_URL}/orders/my-orders`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

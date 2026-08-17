@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { API_BASE_URL } from "../config/apiConfig";
 
 import Slider from "../components/Slider";
 import Categories from "../components/Categories";
@@ -10,7 +11,7 @@ function Home() {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const res = await fetch("https://mycart-mern-ecommerce.onrender.com/api/products");
+      const res = await fetch(`${API_BASE_URL}/products`);
       const data = await res.json();
 
       setProducts(Array.isArray(data) ? data : []);

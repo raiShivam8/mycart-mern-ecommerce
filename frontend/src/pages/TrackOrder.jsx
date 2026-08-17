@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import "./css/track.css";
+import { API_BASE_URL } from "../config/apiConfig";
 
 const steps = [
   "Pending",
@@ -19,7 +20,7 @@ function TrackOrder() {
     const fetchOrder = async () => {
       const token = localStorage.getItem("token");
 
-      const res = await fetch(`https://mycart-mern-ecommerce.onrender.com/api/orders/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/orders/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

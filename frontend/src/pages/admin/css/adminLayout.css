@@ -2,9 +2,24 @@
   min-height: 100vh;
   display: flex;
   background: #f4f6fb;
+  transition: background-color 0.3s;
 }
 
 .admin-main {
   flex: 1;
   min-width: 0;
+  background: #f4f6fb;
+  transition: background-color 0.3s;
+}
+
+/* DARK MODE */
+html.dark .admin-layout,
+html.dark .admin-main {
+  background: #0b0f19;
+}
+
+@media (max-width: 768px) {
+  .admin-layout {
+    flex-direction: column;
+  }
 }

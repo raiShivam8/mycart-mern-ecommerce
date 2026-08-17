@@ -9,6 +9,7 @@ import {
 } from "react-icons/fa";
 
 import "./css/adminDashboard.css";
+import { API_BASE_URL } from "../../config/apiConfig";
 
 function AdminDashboard() {
   const [stats, setStats] = useState({
@@ -28,7 +29,7 @@ function AdminDashboard() {
     const fetchStats = async () => {
       const token = localStorage.getItem("token");
 
-      const res = await fetch("https://mycart-mern-ecommerce.onrender.com/api/admin/stats", {
+      const res = await fetch(`${API_BASE_URL}/admin/stats`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

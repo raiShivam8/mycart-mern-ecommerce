@@ -1,4 +1,5 @@
 import "./css/supportPages.css";
+import { API_BASE_URL } from "../config/apiConfig";
 
 function GiftCards() {
   const handleSubmit = async (e) => {
@@ -15,7 +16,7 @@ function GiftCards() {
       type: "gift-card",
     };
 
-    const res = await fetch("https://mycart-mern-ecommerce.onrender.com/api/support", {
+    const res = await fetch(`${API_BASE_URL}/support`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

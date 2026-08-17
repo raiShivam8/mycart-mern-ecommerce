@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./css/adminSupport.css";
+import { API_BASE_URL } from "../../config/apiConfig";
 
 function AdminSupport() {
   const [messages, setMessages] = useState([]);
@@ -7,7 +8,7 @@ function AdminSupport() {
   const fetchMessages = async () => {
     const token = localStorage.getItem("token");
 
-    const res = await fetch("https://mycart-mern-ecommerce.onrender.com/api/support", {
+    const res = await fetch(`${API_BASE_URL}/support`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -24,7 +25,7 @@ function AdminSupport() {
   const updateStatus = async (id, status) => {
     const token = localStorage.getItem("token");
 
-    await fetch(`https://mycart-mern-ecommerce.onrender.com/api/support/${id}`, {
+    await fetch(`${API_BASE_URL}/support/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -41,7 +42,7 @@ function AdminSupport() {
 
     const token = localStorage.getItem("token");
 
-    await fetch(`https://mycart-mern-ecommerce.onrender.com/api/support/${id}`, {
+    await fetch(`${API_BASE_URL}/support/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,

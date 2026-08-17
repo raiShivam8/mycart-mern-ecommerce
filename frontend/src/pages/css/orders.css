@@ -2,6 +2,7 @@
   min-height: 100vh;
   background: #f5f7fb;
   padding: 45px 5%;
+  transition: background-color 0.3s;
 }
 
 .orders-container {
@@ -42,6 +43,7 @@
   border-radius: 22px;
   padding: 26px;
   box-shadow: 0 8px 28px rgba(0,0,0,.07);
+  transition: 0.3s;
 }
 
 .order-card-top {
@@ -85,6 +87,7 @@
   background: #f9fafb;
   padding: 15px;
   border-radius: 16px;
+  transition: 0.3s;
 }
 
 .order-product-img {
@@ -181,21 +184,88 @@
   padding: 13px 22px;
   border-radius: 12px;
   font-weight: 800;
+  transition: 0.3s;
 }
 
 .track-order-btn:hover {
   background: #1d4ed8;
 }
 
-@media (max-width: 768px) {
+/* DARK MODE STYLES */
+html.dark .orders-page {
+  background: #0b0f19;
+}
+
+html.dark .orders-header h1,
+html.dark .order-card-top h2,
+html.dark .order-product-info h3,
+html.dark .order-card-bottom h2 {
+  color: #f8fafc;
+}
+
+html.dark .orders-header p,
+html.dark .order-card-top p,
+html.dark .order-product-info p,
+html.dark .order-progress-step p,
+html.dark .order-card-bottom p {
+  color: #cbd5e1;
+}
+
+html.dark .empty-orders-box,
+html.dark .order-card {
+  background: #1e293b;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
+  border: 1px solid #334155;
+}
+
+html.dark .order-card-top,
+html.dark .order-card-bottom {
+  border-color: #334155;
+}
+
+html.dark .order-product {
+  background: #0f172a;
+}
+
+html.dark .order-product-img {
+  background: #1e293b;
+}
+
+html.dark .order-progress-step span {
+  background: #334155;
+  color: #94a3b8;
+}
+
+html.dark .order-progress-step.active span {
+  background: #2563eb;
+  color: white;
+}
+
+html.dark .order-progress-step.active p {
+  color: #60a5fa;
+}
+
+@media (max-width: 1024px) {
+  .orders-page {
+    padding: 30px 20px;
+  }
+
+  .order-progress-step p {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 850px) {
   .order-card-top,
   .order-card-bottom {
     flex-direction: column;
     align-items: flex-start;
+    gap: 12px;
   }
 
   .order-progress {
     grid-template-columns: 1fr;
+    gap: 12px;
   }
 
   .order-progress-step {

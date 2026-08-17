@@ -2,6 +2,7 @@
   min-height: 100vh;
   padding: 45px 5%;
   background: #f5f7fb;
+  transition: background-color 0.3s;
 }
 
 .track-card {
@@ -11,6 +12,7 @@
   padding: 35px;
   border-radius: 22px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  transition: 0.3s;
 }
 
 .track-header {
@@ -54,6 +56,7 @@
   background: #f9fafb;
   padding: 20px;
   border-radius: 16px;
+  transition: 0.3s;
 }
 
 .track-summary p {
@@ -136,6 +139,7 @@
   padding: 15px;
   border-radius: 16px;
   margin-bottom: 14px;
+  transition: 0.3s;
 }
 
 .track-item img {
@@ -164,6 +168,67 @@
   padding: 13px 22px;
   border-radius: 12px;
   font-weight: 800;
+  transition: 0.3s;
+}
+
+/* DARK MODE STYLES */
+html.dark .track-page {
+  background: #0b0f19;
+}
+
+html.dark .track-card {
+  background: #1e293b;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  border: 1px solid #334155;
+}
+
+html.dark .track-header {
+  border-color: #334155;
+}
+
+html.dark .track-header h1,
+html.dark .track-summary h2,
+html.dark .track-items h2,
+html.dark .track-item h3 {
+  color: #f8fafc;
+}
+
+html.dark .track-header p,
+html.dark .track-summary p,
+html.dark .track-step p,
+html.dark .track-item p {
+  color: #cbd5e1;
+}
+
+html.dark .track-summary div,
+html.dark .track-item {
+  background: #0f172a;
+}
+
+html.dark .track-item img {
+  background: #1e293b;
+}
+
+html.dark .tracking-line::before {
+  background: #334155;
+}
+
+html.dark .circle {
+  background: #334155;
+  color: #94a3b8;
+}
+
+html.dark .track-step.active .circle {
+  background: #2563eb;
+  color: white;
+}
+
+html.dark .track-step.active p {
+  color: #60a5fa;
+}
+
+html.dark .back-orders-btn {
+  background: #2563eb;
 }
 
 @media (max-width: 768px) {
